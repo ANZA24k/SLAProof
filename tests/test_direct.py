@@ -32,3 +32,26 @@ def test_maintenance_overlap(direct_vm, direct_deploy, direct_alice, direct_bob)
     args[8] = '[{"start":1790812900,"end":1790813100},{"start":1790813050,"end":1790813150}]'
     with direct_vm.expect_revert("overlapping/out-of-range maintenance"):
         c.create_sla(*args)
+
+
+def test_evidence_with_independent_validator(direct_vm, direct_deploy, direct_alice, direct_bob):
+    """Direct Mode web and LLM mocks; exercises the response.status accessor."""
+    from pathlib import Path
+    direct_vm.warp("2026-10-26T10:00:00Z")
+    c = direct_deploy("contracts/slaproof.py")
+    direct_vm.sender = direct_alice
+    args = arguments(direct_bob)
+    args[0] = "DIRECT_EVID001"
+    c.create_sla(*args)
+    direct_vm.sender = direct_bob
+    manifest = Path("fixtures/manifest.json").read_text(encoding="utf-8").strip()
+    c.submit_evidence("DIRECT_EVID001", manifest)
+    for kind in ("monitoring", "incidents"):
+        body = Path("fixtures/" + kind + ".json").read_text(encoding="utf-8")
+        direct_vm.mock_web(".*fixtures/" + kind + r"\.json$", {"status": 200, "body": body})
+    direct_vm.mock_llm(".*", '{"eligible_ids":["INC001"]}')
+    c.evaluate("DIRECT_EVID001", 1)
+    result = c.get_assessment("DIRECT_EVID001", 1)
+    assert result["outcome"] == "MET"
+    assert result["details"]["uptime_bps"] == 9993
+    assert direct_vm.run_validator() is True
