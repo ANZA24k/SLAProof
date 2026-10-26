@@ -1,5 +1,5 @@
 name: One-shot Studionet full consensus
-# Second attempt after correcting SDK-relative contract path
+# Final attempt after repairing actual GenVM HTTP response handling; source revalidated
 on:
   push:
     paths:
