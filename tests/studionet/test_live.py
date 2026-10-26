@@ -16,12 +16,17 @@ from gltest.utils import extract_contract_address
 EXPLORER = "https://explorer-studio.genlayer.com"
 CONTRACT = Path("contracts/slaproof.py")
 EVIDENCE = Path("fixtures/manifest.json")
-PINNED_SHA256 = "96edb3a3b55b89930828e6bcd4500e77e8703345f8cb41aff5401326b4f5e7b0"
+PINNED_SHA256 = "c10a4ff798c9dba867d1507fa3b3379f6f0473a5f1ac2f5ce3a2aaf0c6631a38"
 
 
 def _print_receipt(stage, receipt):
     # Never print private account keys. Receipts are public chain data.
-    print("SLA_PROOF_RECEIPT", stage, json.dumps(receipt, default=str), flush=True)
+    data = {"hash": receipt.get("hash"), "status_name": receipt.get("status_name"), "result_name": receipt.get("result_name"), "leader_only": receipt.get("leader_only")}
+    leaders = receipt.get("consensus_data", {}).get("leader_receipt", [])
+    errors = [x.get("genvm_result", {}).get("stderr", "") for x in leaders if x.get("genvm_result", {}).get("stderr", "")]
+    if errors:
+        data["leader_errors"] = [error[:5000] for error in errors]
+    print("SLA_PROOF_RECEIPT", stage, json.dumps(data, default=str), flush=True)
 
 
 def _assert_chain_success(stage, receipt):
