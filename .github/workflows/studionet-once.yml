@@ -1,4 +1,5 @@
 name: One-shot Studionet full consensus
+# Second attempt after correcting SDK-relative contract path
 on:
   push:
     paths:
