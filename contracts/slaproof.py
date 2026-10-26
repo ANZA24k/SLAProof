@@ -276,7 +276,7 @@ class SLAProof(gl.Contract):
             docs = {}
             for source in manifest["sources"]:
                 try:
-                    response = gl.nondet.web.get(source["url"])
+                    response = gl.nondet.web.request(source["url"], method="GET")
                 except Exception:
                     raise gl.vm.UserError("temporary evidence retrieval failure")
                 status = response.status_code
