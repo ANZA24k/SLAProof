@@ -31,14 +31,14 @@ class FakeVM:
         self.vm = types.SimpleNamespace(UserError=UserError, Return=type("Return", (), {}),
                                         run_nondet_unsafe=self.consensus)
         self.message = types.SimpleNamespace(sender_address=OWNER)
-        self.nondet = types.SimpleNamespace(web=types.SimpleNamespace(get=self.get),
+        self.nondet = types.SimpleNamespace(web=types.SimpleNamespace(get=self.get, request=self.get),
                                            exec_prompt=self.prompt)
         self.web = {}
         self.llm = {"eligible_ids": ["INC001"]}
         self.mismatch = False
         self.validation_calls = 0
 
-    def get(self, url):
+    def get(self, url, method="GET"):
         x = self.web.get(url)
         if isinstance(x, Exception):
             raise x
