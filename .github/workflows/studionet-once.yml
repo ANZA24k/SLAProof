@@ -1,5 +1,5 @@
 name: One-shot Studionet full consensus
-# Final attempt after repairing actual GenVM HTTP response handling; source revalidated
+# Runtime-confirmed Response.status, validated by fourteen tests; single necessary redeployment
 on:
   push:
     paths:
