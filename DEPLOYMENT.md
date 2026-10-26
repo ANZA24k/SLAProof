@@ -11,3 +11,7 @@
 The historical demo's evidence deadline is 2026-11-01. After expiry, publish a **new pinned fixture** and lock a new period; never overwrite the old commit.
 
 Source APIs: [Studio](https://docs.genlayer.com/developers/intelligent-contracts/tools/genlayer-studio), [Equivalence Principle](https://docs.genlayer.com/developers/intelligent-contracts/equivalence-principle), [GenLayer Testing](https://docs.genlayer.com/api-references/genlayer-test).
+
+## Verified stable deployment
+
+The canonical contract is deployed at [`0x1Fd460A508CD3bFbc99f38b28b7482169B0aBA78`](https://explorer-studio.genlayer.com/address/0x1Fd460A508CD3bFbc99f38b28b7482169B0aBA78), source SHA-256 `e88de453e664d4641f00a428bb15f189443370605a4e9ade3d06e86e332318a5`. Verified Full Consensus yielded `PARTIAL` (synthetic fixture), and one-time settlement completed. All finalized tx, decision hash and readback are in [LIVE_EVIDENCE.md](docs/LIVE_EVIDENCE.md). **Do not redeploy this unchanged source.**

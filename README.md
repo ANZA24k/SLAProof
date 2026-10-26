@@ -27,7 +27,7 @@ The checked-in reports are **fictional**, not production service measurements. T
 
 Demo call: `create_sla("SLADEMO001", "demo-api", "<different built-in Studio account address>", 1790812800, 1790899200, 1793491200, 9990, 250, "[]", "[\"UPSTREAM_FAILURE\"]", 1000000, 1500, 4000)`
 
-Then the locked claimant submits the **single line of manifest JSON with the final newline removed**, and any account runs `evaluate("SLADEMO001",1)` under **Full Consensus**, not leader-only. A 180-second simulated upstream exclusion and 60-second service error imply conditional uptime **9993 bps** and measured p95 **220ms**. If validators accept the exclusion, the deterministic result is **MET**. No live outcome is claimed until Explorer finalization and chain readback.
+Then the locked claimant submits the **single line of manifest JSON with the final newline removed**, and any account runs `evaluate("SLADEMO001",1)` under **Full Consensus**, not leader-only. A 180-second simulated upstream exclusion and 60-second service error imply conditional uptime **9993 bps** and measured p95 **220ms**. If validators accept the exclusion, the deterministic result is **MET**. **Actual finalized Studionet result:** validators did **not** approve the upstream exclusion. Final uptime = **9972 bps**, p95 latency = **220 ms**, verdict = **PARTIAL**, and the one-time settlement recorded **150,000** notional claimant credit units. See [finalized transaction receipts and source fingerprint](docs/LIVE_EVIDENCE.md).
 
 ## Quality verification
 
