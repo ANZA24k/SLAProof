@@ -50,7 +50,7 @@ def test_live_studionet_full_consensus():
     print("SLA_PROOF_PROVIDER", provider.address, flush=True)
     print("SLA_PROOF_CLAIMANT", claimant.address, flush=True)
 
-    factory = get_contract_factory(contract_file_path=str(CONTRACT))
+    factory = get_contract_factory(contract_file_path="slaproof.py")
     deployment = factory.deploy_contract_tx(
         account=provider,
         consensus_max_rotations=3,
