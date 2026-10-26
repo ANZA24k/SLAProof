@@ -4,7 +4,7 @@ END = 1790899200
 CLOSE = END + 2592000
 
 def arguments(bob):
-    return ["DIRECT001", "demo-api", str(bob), START, END, CLOSE,
+    return ["DIRECT001", "demo-api", "0x" + bob.hex(), START, END, CLOSE,
             9990, 250, "[]", '["UPSTREAM_FAILURE"]', 1000000, 1500, 4000]
 
 def test_create_read(direct_vm, direct_deploy, direct_alice, direct_bob):
