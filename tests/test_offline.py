@@ -43,10 +43,10 @@ class FakeVM:
         if isinstance(x, Exception):
             raise x
         if x is None:
-            return types.SimpleNamespace(status_code=404, body=b"")
+            return types.SimpleNamespace(status=404, body=b"")
         if isinstance(x, int):
-            return types.SimpleNamespace(status_code=x, body=b"")
-        return types.SimpleNamespace(status_code=200, body=x)
+            return types.SimpleNamespace(status=x, body=b"")
+        return types.SimpleNamespace(status=200, body=x)
 
     def prompt(self, text, response_format="json"):
         assert "UNTRUSTED SOURCE DATA" in text
