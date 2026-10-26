@@ -279,7 +279,7 @@ class SLAProof(gl.Contract):
                     response = gl.nondet.web.request(source["url"], method="GET")
                 except Exception:
                     raise gl.vm.UserError("temporary evidence retrieval failure")
-                status = response.status_code
+                status = response.status
                 if status >= 500 or status == 429:
                     raise gl.vm.UserError("temporary upstream HTTP failure")
                 if status != 200:
