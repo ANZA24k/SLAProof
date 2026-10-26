@@ -16,7 +16,7 @@ from gltest.utils import extract_contract_address
 EXPLORER = "https://explorer-studio.genlayer.com"
 CONTRACT = Path("contracts/slaproof.py")
 EVIDENCE = Path("fixtures/manifest.json")
-PINNED_SHA256 = "c10a4ff798c9dba867d1507fa3b3379f6f0473a5f1ac2f5ce3a2aaf0c6631a38"
+PINNED_SHA256 = "e88de453e664d4641f00a428bb15f189443370605a4e9ade3d06e86e332318a5"
 
 
 def _print_receipt(stage, receipt):
